@@ -1,0 +1,146 @@
+/* =========================================================================
+   ระบบสมุดบัญชีวัด — รูปแบบหน้าตา (โทนสีไม้สัก-ทองคำ)
+   ========================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@500;600;700&display=swap');
+
+:root {
+  --cream:#FAF6EE; --paper:#FFFFFF; --teak:#7A3E13; --teak-dark:#5C2D0C;
+  --gold:#C99700; --ink:#1F1A14; --ink-soft:#5C5247; --line:#E2D6BA; --line-soft:#EFE7D2;
+  --income:#2D6A3F; --income-bg:#E7F0EA; --expense:#A02E1A; --expense-bg:#F4E2DE;
+  --asset:#1F4D7A; --asset-bg:#E3ECF4;
+  --sans:'Sarabun','IBM Plex Sans Thai','Noto Sans Thai',system-ui,sans-serif;
+  --serif:'Noto Serif Thai','Sarabun',serif;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--cream); color:var(--ink); font-family:var(--sans); font-size:14px; }
+input:focus, select:focus, textarea:focus { border-color:var(--teak)!important; outline:none; }
+
+/* ---------- หน้าล็อกอิน ---------- */
+.auth-wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
+.auth-card { background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:40px; width:100%; max-width:400px; box-shadow:0 4px 24px rgba(122,62,19,.08); }
+.auth-logo { width:64px; height:64px; border-radius:50%; background:var(--gold); color:#fff; font-size:34px; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+.auth-title { font-family:var(--serif); font-size:24px; font-weight:700; color:var(--teak); text-align:center; margin:0; }
+.auth-sub { text-align:center; color:var(--ink-soft); font-size:13px; margin:4px 0 24px; }
+.auth-tabs { display:flex; gap:4px; margin-bottom:20px; border-bottom:1px solid var(--line); }
+.auth-tab { flex:1; padding:10px; background:none; border:none; border-bottom:3px solid transparent; color:var(--ink-soft); font-family:var(--sans); font-size:14px; cursor:pointer; }
+.auth-tab.active { color:var(--teak); border-bottom-color:var(--teak); font-weight:600; }
+.auth-note { font-size:12px; color:var(--ink-soft); text-align:center; margin:20px 0 0; line-height:1.6; }
+
+/* ---------- แถบบน ---------- */
+.topbar { background:var(--teak); color:#fff; border-bottom:4px solid var(--gold); }
+.topbar-inner { max-width:1280px; margin:0 auto; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.brand { display:flex; align-items:center; gap:16px; }
+.brand-logo { width:52px; height:52px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-size:26px; flex-shrink:0; }
+.brand-name { font-family:var(--serif); font-size:22px; font-weight:700; line-height:1.2; }
+.brand-sub { font-size:12px; opacity:.85; margin-top:2px; }
+.topbar-right { text-align:right; font-size:12px; opacity:.9; display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
+.fy-year { font-family:var(--serif); font-size:18px; font-weight:600; }
+.btn-ghost-light { margin-top:6px; background:transparent; border:1px solid rgba(255,255,255,.5); color:#fff; padding:5px 12px; border-radius:3px; font-family:var(--sans); font-size:13px; cursor:pointer; }
+.btn-ghost-light:hover { background:rgba(255,255,255,.12); }
+
+/* ---------- เมนู ---------- */
+.nav { background:var(--paper); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:10; }
+.nav-inner { max-width:1280px; margin:0 auto; display:flex; gap:2px; padding:0 16px; overflow-x:auto; }
+.nav-tab { padding:14px 16px; background:none; border:none; border-bottom:3px solid transparent; color:var(--ink-soft); font-family:var(--sans); font-size:14px; font-weight:500; white-space:nowrap; cursor:pointer; }
+.nav-tab.active { color:var(--teak); border-bottom-color:var(--teak); font-weight:600; }
+
+/* ---------- เนื้อหา ---------- */
+.main { max-width:1280px; margin:0 auto; padding:28px 20px 60px; }
+.foot { text-align:center; padding:20px; font-size:12px; color:var(--ink-soft); border-top:1px solid var(--line); }
+
+.sec-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:20px; padding-bottom:14px; border-bottom:2px solid var(--teak); }
+.sec-title { font-family:var(--serif); font-size:22px; font-weight:700; color:var(--teak); }
+.sec-sub { font-size:13px; color:var(--ink-soft); margin-top:4px; }
+
+.card { background:var(--paper); border:1px solid var(--line); border-radius:4px; margin-bottom:16px; }
+.card-title { font-family:var(--serif); font-size:18px; font-weight:600; color:var(--teak); padding:16px 20px 0; }
+
+/* ---------- สถิติ ---------- */
+.stat-row { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
+.stat { background:var(--paper); border:1px solid var(--line); border-radius:4px; padding:20px; flex:1; min-width:180px; }
+.stat-label { font-size:12px; color:var(--ink-soft); font-weight:500; }
+.stat-val { font-family:var(--serif); font-size:26px; font-weight:600; margin-top:8px; }
+.stat-unit { font-size:11px; color:var(--ink-soft); }
+
+/* ---------- ตาราง ---------- */
+.tbl { width:100%; border-collapse:collapse; font-size:14px; }
+.tbl thead tr { background:var(--cream); border-bottom:2px solid var(--teak); }
+.tbl th { text-align:left; padding:12px 14px; font-size:12px; font-weight:600; color:var(--teak-dark); }
+.tbl td { padding:12px 14px; vertical-align:top; border-bottom:1px solid var(--line-soft); }
+.tbl .r, th.r { text-align:right; }
+.tbl .c, th.c { text-align:center; }
+.bold { font-weight:600; }
+.income { color:var(--income); font-weight:500; }
+.expense { color:var(--expense); font-weight:500; }
+.asset { color:var(--asset); }
+.teak { color:var(--teak); }
+.muted { color:var(--ink-soft); }
+.sm { font-size:12px; }
+.sub { font-size:12px; color:var(--ink-soft); margin-top:2px; }
+.r { font-variant-numeric:tabular-nums; }
+
+.empty { text-align:center; padding:40px; color:var(--ink-soft); }
+.empty.sm { padding:14px 16px; text-align:left; }
+
+.pill { display:inline-block; padding:2px 10px; border-radius:100px; font-size:12px; font-weight:500; white-space:nowrap; }
+.pill.income { background:var(--income-bg); color:var(--income); }
+.pill.expense { background:var(--expense-bg); color:var(--expense); }
+
+.lnk { background:none; border:none; color:var(--teak); font-family:var(--sans); font-size:13px; cursor:pointer; margin-right:6px; text-decoration:underline; }
+.lnk.del { color:var(--expense); }
+
+/* ---------- แบนเนอร์สรุป ---------- */
+.sum-banner { padding:16px; display:flex; justify-content:space-between; align-items:center; }
+.sum-banner.income { background:var(--income-bg); border-color:var(--income); }
+.sum-banner.expense { background:var(--expense-bg); border-color:var(--expense); }
+.sum-banner.asset { background:var(--asset-bg); border-color:var(--asset); }
+.sum-amt { font-family:var(--serif); font-size:22px; font-weight:700; }
+.sum-banner.income .sum-amt { color:var(--income); }
+.sum-banner.expense .sum-amt { color:var(--expense); }
+.sum-banner.asset .sum-amt { color:var(--asset); }
+
+.grp-head { padding:12px 16px; background:var(--cream); border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; font-weight:600; color:var(--teak-dark); }
+.grp-head span:last-child { font-family:var(--serif); }
+
+/* ---------- ฟอร์ม ---------- */
+.form-card { padding:20px; background:var(--cream); }
+.form-title { font-family:var(--serif); font-size:17px; font-weight:600; color:var(--teak); margin-bottom:16px; }
+.fld { display:block; margin-bottom:12px; }
+.fld span { display:block; font-size:12px; color:var(--ink-soft); margin-bottom:4px; font-weight:500; }
+.fld input, .fld select, .fld textarea { width:100%; padding:8px 10px; border:1px solid var(--line); border-radius:3px; background:var(--paper); font-family:var(--sans); font-size:14px; color:var(--ink); }
+.fld textarea { min-height:60px; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.grid3 { display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px; }
+.form-actions { display:flex; gap:8px; align-items:center; margin-top:8px; }
+.save-msg { color:var(--income); font-size:14px; }
+
+.btn-primary { background:var(--teak); color:#fff; border:1px solid var(--teak); padding:8px 16px; border-radius:3px; font-family:var(--sans); font-size:14px; font-weight:500; cursor:pointer; }
+.btn-primary:hover { background:var(--teak-dark); }
+.btn-primary.full { width:100%; padding:11px; margin-top:8px; }
+.btn-subtle { background:var(--cream); color:var(--ink); border:1px solid var(--line); padding:8px 16px; border-radius:3px; font-family:var(--sans); font-size:14px; cursor:pointer; }
+
+/* ---------- รายงาน ---------- */
+.report { padding:40px; }
+.rep-head { text-align:center; margin-bottom:32px; }
+.rep-title { font-family:var(--serif); font-size:24px; font-weight:700; color:var(--teak); }
+.rep-name { font-family:var(--serif); font-size:18px; margin-top:6px; }
+.rep-addr { font-size:14px; color:var(--ink-soft); margin-top:2px; }
+.rep-sec { margin-bottom:28px; }
+.rep-sec-t { font-family:var(--serif); font-size:18px; font-weight:600; color:var(--teak); margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--gold); }
+.rep-tbl { width:100%; border-collapse:collapse; font-size:14px; }
+.rep-tbl th { text-align:left; padding:10px 8px; font-weight:600; color:var(--teak-dark); border-bottom:2px solid var(--teak); }
+.rep-tbl td { padding:10px 8px; border-bottom:1px solid var(--line-soft); }
+.rep-tbl .r, .rep-tbl th.r { text-align:right; }
+.rep-total td { border-top:2px solid var(--teak); background:var(--cream); font-weight:700; }
+.rep-sign { margin-top:60px; display:grid; grid-template-columns:1fr 1fr; gap:40px; text-align:center; font-size:14px; }
+.sign-line { margin-bottom:60px; }
+
+@media print {
+  body { background:#fff; }
+  .topbar, .nav, .sec-head, .foot, .btn-primary { display:none!important; }
+  .card.report { border:none; padding:0; }
+}
+@media (max-width:640px) {
+  .grid2, .grid3 { grid-template-columns:1fr; }
+  .brand-name { font-size:18px; }
+}
