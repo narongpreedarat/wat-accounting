@@ -4,8 +4,7 @@
 //  เจ้านายไม่ต้องแก้ไฟล์นี้ (แก้แค่ config.js)
 // ===========================================================================
 
-const { SUPABASE_URL, SUPABASE_ANON_KEY } = window.WAT_CONFIG;
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const sb = window.supabase.createClient(window.WAT_CONFIG.SUPABASE_URL, window.WAT_CONFIG.SUPABASE_ANON_KEY);
 
 // ---------- หมวดหมู่ตามแบบ พศ. ----------
 const INCOME_CATEGORIES = [
