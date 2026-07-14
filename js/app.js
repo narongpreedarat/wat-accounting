@@ -60,23 +60,45 @@ function esc(s) {
 //  ระบบล็อกอิน
 // ===========================================================================
 async function initAuth() {
-  const { data } = await sb.auth.getSession();
-  if (data.session) {
-    state.user = data.session.user;
-    await loadAll();
-    renderApp();
-  } else {
-    renderAuth();
-  }
-  sb.auth.onAuthStateChange((_event, session) => {
-    if (session) {
-      state.user = session.user;
-      loadAll().then(renderApp);
+  try {
+    const { data, error } = await sb.auth.getSession();
+    if (error) {
+      console.error('Supabase getSession error:', error);
+      throw error;
+    }
+    if (data && data.session) {
+      state.user = data.session.user;
+      await loadAll();
+      renderApp();
     } else {
-      state.user = null;
       renderAuth();
     }
-  });
+    sb.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        state.user = session.user;
+        loadAll().then(renderApp);
+      } else {
+        state.user = null;
+        renderAuth();
+      }
+    });
+  } catch (err) {
+    console.error('Initialization error:', err);
+    document.getElementById('root').innerHTML = `
+      <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#C0392B;font-family:sans-serif;text-align:center;padding:20px;">
+        <h2>⚠️ ไม่สามารถเชื่อมต่อฐานข้อมูลได้</h2>
+        <p style="margin-top:10px;color:#5C5247;max-width:500px;line-height:1.6">
+          ${err.message || 'เกิดข้อผิดพลาดเครือข่าย หรือเซิร์ฟเวอร์ Supabase อาจจะหยุดทำงานชั่วคราว'}
+        </p>
+        <div style="margin-top:20px;text-align:left;background:#FAF6EE;padding:15px;border-radius:8px;font-size:14px;color:#7A3E13;border:1px solid #E2D6BA;">
+          <b>วิธีแก้ไขเบื้องต้น:</b>
+          <ol style="margin-top:8px;padding-left:20px;">
+            <li>ตรวจสอบค่า <code>SUPABASE_URL</code> และ <code>SUPABASE_ANON_KEY</code> ในไฟล์ <code>js/config.js</code> ว่าถูกต้องและครบถ้วน</li>
+            <li>หากท่านใช้ Supabase แบบฟรี โปรเจกต์อาจถูกระงับชั่วคราว (Pause) เนื่องจากไม่ได้ใช้งานนานเกิน 7 วัน ให้เจ้านายล็อกอินเข้าเว็บ Supabase แล้วกดปุ่ม <b>"Restore"</b> หรือ <b>"Resume"</b> โปรเจกต์ครับ</li>
+          </ol>
+        </div>
+      </div>`;
+  }
 }
 
 async function signUp(email, password, templeName) {
